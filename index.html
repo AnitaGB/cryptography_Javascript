@@ -28,15 +28,40 @@
     <main>
         <article id="encriptador">
             <h2>Algoritmo Encriptador</h2>
-            <form>
+            <form onsubmit="onSubmit(event)">
                 <!--Adicionar opções do usuário fazer input do alfabeto ou usar o template fixo-->
+                <div>
+                    <input id="tipo_entrada" type="checkbox" value="true" checked>
+                    <label for="tipo_entrada">Utilizar alfabeto padrão</label>
+                </div>
                 <!--Se escolhido fazer input, desbloquear campo de input de alfabeto-->
+                <div>
+                    <label for="alfabeto">Alfabeto</label>
+                    <input id="alfabeto" type="text" placeholder="123456abcd">
+                </div>
                 <!--Adicionar opções do usuário fazer input do caractere separador ou usar o template fixo-->
+                <div>
+                    <input id="tipo_separador" type="checkbox" value="true" checked>
+                    <label for="tipo_separador">Utilizar separador padrão</label>
+                </div>
                 <!--Se escolhido fazer input, desbloquear campo de input de caractere separador (Não pode estar contido no alfabeto)-->
+                <div>
+                    <label for="separador">Separador</label>
+                    <input id="separador" type="text" maxlength="1" placeholder="&">
+                </div>
                 <!--Mensagem a ser criptografada-->
+                <div>
+                    <label for="mensagem">Mensagem a ser criptografada</label>
+                    <input id="mensagem" type="text" placeholder="Bom dia!">
+                </div>
                 <!--Senha (Aceita apenas caracteres ASCII)-->
+                <div>
+                    <label for="senha">Senha</label>
+                    <input id="senha" type="text" placeholder="senha123">
+                </div>
                 <!--Adicionar opções do usuário fazer input da correspondência das senhas ou usar o template fixo-->
-                <!--Se escolhido fazer input, desbloquear campo de input de correspondência das senhas-->
+                <!--Se escolhido fazer input, desbloquear campo de input de correspondência das senhas (mesmo tamanho da senha acima)-->
+                <button type="submit">Gerar mensagem criptografada</button>
             </form>
             <p id="resultado-encriptador">
                 <!--Adicionar resultado da criptografia-->
