@@ -39,7 +39,13 @@
                     <!--Se escolhido fazer input, desbloquear campo de input de alfabeto-->
                     <div>
                         <label for="alfabeto">Alfabeto</label>
-                        <input id="alfabeto" type="text" placeholder="123456abcd">
+                        <input 
+                            id="alfabeto" 
+                            type="text" 
+                            placeholder="['a', 'b', 'c']"  
+                            value="['0', '1', '2', '3', '4', '5', '6']"
+                            disabled
+                        >
                     </div>
                 </div>
                 
@@ -52,7 +58,14 @@
                     <!--Se escolhido fazer input, desbloquear campo de input de caractere separador (Não pode estar contido no alfabeto)-->
                     <div>
                         <label for="separador">Separador</label>
-                        <input id="separador" type="text" maxlength="1" placeholder="&">
+                        <input 
+                            id="separador" 
+                            type="text" 
+                            maxlength="1" 
+                            placeholder="&" 
+                            value="&" 
+                            disabled
+                        >
                     </div>
                 </div>
                 

@@ -1,6 +1,26 @@
-import { ConvertToValidASCIITable } from "./src/GenericEncripter.js";
+import { ConvertToValidASCIITable, generateTape70 } from "./src/GenericEncripter.js";
+import { getLetters } from "./src/util.js";
 
 const encrypterForm = document.getElementById("encriptador_form");
+
+const checkboxAlphabet = document.getElementById("tipo_entrada");
+const checkboxSeparator = document.getElementById("tipo_separador");
+
+checkboxAlphabet.addEventListener("change", (e) => {
+    const disabled = e.target.checked;
+    const alphabet = document.getElementById("alfabeto");
+    alphabet.disabled = disabled;
+    alphabet.value = "['0', '1', '2', '3', '4', '5', '6']";
+});
+
+checkboxSeparator.addEventListener("change", (e) => {
+    const disabled = e.target.checked;
+    const alphabet = document.getElementById("separador");
+    alphabet.disabled = disabled;
+    alphabet.value = "&";
+});
+
+
 encrypterForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -13,7 +33,10 @@ encrypterForm.addEventListener("submit", (e) => {
         password: document.getElementById('senha').value
     };
 
+    const alphabet = getLetters(formData.alphabet, ",", ["'", "'"]);
+
     console.log(ConvertToValidASCIITable(ASCIITableDefault, formData.message));
+    console.log(generateTape70(ASCIITableDefault, alphabet));
 })
 
 const ASCIITableDefault = [
