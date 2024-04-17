@@ -1,9 +1,20 @@
 *{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 20px;
+}
+
+nav {
+    margin: 20px 0;
 }
 
 nav li{
     display: inline;
+    margin-right: 12px;
 }
 
 nav a {
@@ -14,6 +25,35 @@ nav ul{
     list-style-type: none;
 }
 
+main article {
+    margin: 20px 0;
+}
+
+article h2 {
+    margin-bottom: 12px;
+}
+
 form div {
     margin-bottom: 10px;
+}
+
+form input[type=text]{
+    display: block;
+    width: 300px;
+    padding: 5px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: rgb(208, 203, 203);
+}
+
+button[type=submit] {
+    background-color: #248556;
+    font-size: 16px;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
 }

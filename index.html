@@ -28,27 +28,34 @@
     <main>
         <article id="encriptador">
             <h2>Algoritmo Encriptador</h2>
-            <form onsubmit="onSubmit(event)">
-                <!--Adicionar opções do usuário fazer input do alfabeto ou usar o template fixo-->
-                <div>
-                    <input id="tipo_entrada" type="checkbox" value="true" checked>
-                    <label for="tipo_entrada">Utilizar alfabeto padrão</label>
+            <form id="encriptador_form">
+                
+                <div class="grupo">
+                    <!--Adicionar opções do usuário fazer input do alfabeto ou usar o template fixo-->
+                    <div>
+                        <input id="tipo_entrada" type="checkbox" value="true" checked>
+                        <label for="tipo_entrada">Utilizar alfabeto padrão</label>
+                    </div>
+                    <!--Se escolhido fazer input, desbloquear campo de input de alfabeto-->
+                    <div>
+                        <label for="alfabeto">Alfabeto</label>
+                        <input id="alfabeto" type="text" placeholder="123456abcd">
+                    </div>
                 </div>
-                <!--Se escolhido fazer input, desbloquear campo de input de alfabeto-->
-                <div>
-                    <label for="alfabeto">Alfabeto</label>
-                    <input id="alfabeto" type="text" placeholder="123456abcd">
+                
+                <div class="grupo">
+                    <!--Adicionar opções do usuário fazer input do caractere separador ou usar o template fixo-->
+                    <div>
+                        <input id="tipo_separador" type="checkbox" value="true" checked>
+                        <label for="tipo_separador">Utilizar separador padrão</label>
+                    </div>
+                    <!--Se escolhido fazer input, desbloquear campo de input de caractere separador (Não pode estar contido no alfabeto)-->
+                    <div>
+                        <label for="separador">Separador</label>
+                        <input id="separador" type="text" maxlength="1" placeholder="&">
+                    </div>
                 </div>
-                <!--Adicionar opções do usuário fazer input do caractere separador ou usar o template fixo-->
-                <div>
-                    <input id="tipo_separador" type="checkbox" value="true" checked>
-                    <label for="tipo_separador">Utilizar separador padrão</label>
-                </div>
-                <!--Se escolhido fazer input, desbloquear campo de input de caractere separador (Não pode estar contido no alfabeto)-->
-                <div>
-                    <label for="separador">Separador</label>
-                    <input id="separador" type="text" maxlength="1" placeholder="&">
-                </div>
+                
                 <!--Mensagem a ser criptografada-->
                 <div>
                     <label for="mensagem">Mensagem a ser criptografada</label>
@@ -89,6 +96,6 @@
     <footer>
         <p>© Anita Geovana e Matheus Gabriel 2024. All rights reserved.</p>
     </footer>
-	<script src="./index.js"></script>
+	<script type="module" src="./index.js"></script>
   </body>
 </html>
