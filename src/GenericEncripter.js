@@ -96,3 +96,57 @@ export function generateTape70(ASCIITable = [], units = []){
 
     return tape70;
 }
+
+export function passwordCodeShuffle(ASCIITable = [], tape70 = [], passwordValid = "", passwordCode = []) {
+    let finalTape = {};
+    let cursor = null;
+
+    for (let i = 0; i < passwordValid; i++){
+        const symbol = passwordCode[i];
+        const charASCII = passwordValid[i];
+
+        if (Object.values(finalTape).includes(symbol)) {
+            finalTape[charASCII] = symbol;
+        }
+            
+
+        if (cursor === null) {
+            cursor = [charASCII, symbol]
+        }
+            
+
+        else {
+            let ASCIIindex = ASCIITable.indexOf(cursor[0])
+            let tape70index = tape70.indexOf(cursor[1])
+            const cursorEnd = tape70.indexOf(symbol)
+
+            let step = cursorEnd < tape70index ? -1 : 1;
+
+
+            for (let j = 0; j < cursorEnd - tape70index; j += step) {
+                finalTape[ASCIITable[j + ASCIIindex]] = tape70[j + tape70index];
+            }
+            
+
+            cursor = [charASCII, symbol]
+        }    
+    }
+
+    const arrayOfSymbolsRemain = tape70.filter((v) => {
+        return !Object.values(finalTape).includes(v);
+    })
+
+    const symbolsRemain = makeIterator(arrayOfSymbolsRemain);
+
+    if (Object.keys(finalTape).length < ASCIITable.length) {
+        for (let i; i < ASCIITable.length; i++) {
+            if (!Object.keys(finalTape).includes(ASCIITable[i])) {
+                finalTape.ASCIITable[i]= symbolsRemain.next().value;
+            }   
+        }
+            
+    }
+
+    return finalTape;
+        
+}

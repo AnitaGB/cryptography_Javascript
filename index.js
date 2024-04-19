@@ -1,4 +1,4 @@
-import { ConvertToValidASCIITable, generateTape70 } from "./src/GenericEncripter.js";
+import { ConvertToValidASCIITable, generateTape70, passwordCodeShuffle } from "./src/GenericEncripter.js";
 import { getLetters } from "./src/util.js";
 
 const encrypterForm = document.getElementById("encriptador_form");
@@ -34,9 +34,10 @@ encrypterForm.addEventListener("submit", (e) => {
     };
 
     const alphabet = getLetters(formData.alphabet, ",", ["'", "'"]);
-
+    const tape70 = generateTape70(ASCIITableDefault, alphabet);
     console.log(ConvertToValidASCIITable(ASCIITableDefault, formData.message));
     console.log(generateTape70(ASCIITableDefault, alphabet));
+    console.log(passwordCodeShuffle(ASCIITableDefault, tape70, "123", ["Dó", "Ré", "Mi+Mi"]))
 })
 
 const ASCIITableDefault = [
