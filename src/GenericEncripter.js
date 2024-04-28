@@ -39,8 +39,9 @@ export function ConvertToValidASCIITable(ASCIITable = [], message = ""){
                         getLetter[0] = "~"
                         break;
                 }
+                
             }
-            convertedMsg.push(getLetter[0], getLetter[1]);
+            convertedMsg.push(...getLetter);
         }
     }
 
@@ -104,20 +105,14 @@ export function passwordCodeShuffle(ASCIITable = [], tape70 = [], passwordValid 
     for (let i = 0; i < passwordValid.length; i++){
         const symbol = passwordCode[i];
         const charASCII = passwordValid[i];
-        console.log(symbol + " - " + charASCII);
-
-        console.log(i);
-        console.log(cursor);
 
         if (!Object.values(finalTape).includes(symbol)) {
             finalTape[charASCII] = symbol;
         }
-            
 
         if (cursor === null) {
             cursor = [charASCII, symbol]
         }
-            
 
         else {
             let ASCIIindex = ASCIITable.indexOf(cursor[0])
@@ -130,8 +125,7 @@ export function passwordCodeShuffle(ASCIITable = [], tape70 = [], passwordValid 
                 finalTape["" + ASCIITable[j + ASCIIindex] + ""] = tape70[j + tape70index];
             }
             cursor = [charASCII, symbol]
-        }  
-        console.log(finalTape);  
+        } 
     }
 
     const arrayOfSymbolsRemain = tape70.filter((v) => {

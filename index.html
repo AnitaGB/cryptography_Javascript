@@ -45,6 +45,7 @@
                             placeholder="['a', 'b', 'c']"  
                             value="['0', '1', '2', '3', '4', '5', '6']"
                             disabled
+                            required
                         >
                     </div>
                 </div>
@@ -65,6 +66,7 @@
                             placeholder="&" 
                             value="&" 
                             disabled
+                            required
                         >
                     </div>
                 </div>
@@ -72,20 +74,27 @@
                 <!--Mensagem a ser criptografada-->
                 <div>
                     <label for="mensagem">Mensagem a ser criptografada</label>
-                    <input id="mensagem" type="text" placeholder="Bom dia!">
+                    <input id="mensagem" type="text" placeholder="Bom dia!" required>
                 </div>
                 <!--Senha (Aceita apenas caracteres ASCII)-->
                 <div>
                     <label for="senha">Senha</label>
-                    <input id="senha" type="text" placeholder="senha123">
+                    <input id="senha" type="text" placeholder="senha123" required>
                 </div>
-                <!--Adicionar opções do usuário fazer input da correspondência das senhas ou usar o template fixo-->
-                <!--Se escolhido fazer input, desbloquear campo de input de correspondência das senhas (mesmo tamanho da senha acima)-->
+                <!--Campo de input de correspondência das senhas (mesmo tamanho da senha acima)-->
+                <div>
+                    <label for="correspSenha">Correspondência de senha</label>
+                    <input id="correspSenha" type="text" placeholder="['1', '1+1', '2+1']" required>
+                </div>
                 <button type="submit">Gerar mensagem criptografada</button>
             </form>
-            <p id="resultado-encriptador">
-                <!--Adicionar resultado da criptografia-->
-            </p>
+            <div id="resultado-encriptador-container" class="resultado">
+                <h3>Resultado:</h3>
+                <p id="resultado-encriptador">
+                    <!--Adicionar resultado da criptografia-->
+                </p>
+            </div>
+            
         </article>
         <article id="decriptador">
             <h2>Algoritmo Decriptador</h2>
