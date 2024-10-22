@@ -1,4 +1,3 @@
-import { makeIterator } from "./util.js";
 
 export function ConvertToValidASCIITable(ASCIITable = [], message = ""){
     const convertedMsg = [];
@@ -48,100 +47,59 @@ export function ConvertToValidASCIITable(ASCIITable = [], message = ""){
     return convertedMsg;
 }
 
-export function generateTape70(ASCIITable = [], units = []){
-    const tape70 = [];
+export function alphabetMatch (baseAlphabet, symbolsList) {
+    let alphabetMatch = {}; for (let char of baseAlphabet) alphabetMatch[char] = null
+    let prevChar = null
 
-    const symbolsCount = units.slice();
-    const symbolsPairs = [];
-    const symbols2Combined = [];
-    const symbols3Combined = [];
-    for (let i in units){
-        const v = units[i];
-        symbolsPairs.push(v + "+" + v);
-        for(let j in units){
-            const w = units[j];
-            v!== w && symbols2Combined.push(v + "+" + w);
-            for (let k in units) {
-                const x = units[k];
-                if (!([v,w].includes(x)) && !([x,w].includes(v))){
-                    symbols3Combined.push(v + "+" + w + "+" + x);
-                }    
-            }
-        } 
-    }
-
-    const sc = makeIterator(symbolsCount);
-    const sp = makeIterator(symbolsPairs);
-    const s2c = makeIterator(symbols2Combined);
-    const s3c = makeIterator(symbols3Combined);
-
-    while (tape70.length < ASCIITable.length){
-        try {
-            tape70.push(sc.next().value);
-        } catch (stopIteration){
-            try {
-                tape70.push(sp.next().value);
-            } catch (stopIteration){
-                try {
-                    tape70.push(s2c.next().value);
-                } catch (stopIteration){
-                    try {
-                        tape70.push(s3c.next().value);
-                    } catch (stopIteration){
-                        break;
-                    }
-                } 
-            }
+    symbolsList.forEach(newChar => {
+        for (let i = 0; i < baseAlphabet.length; i++) {
+            if (alphabetMatch[baseAlphabet[i]] == null)
+                alphabetMatch[baseAlphabet[i]] = String(newChar.repeat(i + 1))
+            else
+                alphabetMatch[baseAlphabet[i]] = alphabetMatch[baseAlphabet[i]].replaceAll(prevChar.repeat(2), newChar)
         }
-    }
-
-    return tape70;
+        prevChar = newChar
+    })
+    console.log(alphabetMatch);
+    return alphabetMatch
 }
 
-export function passwordCodeShuffle(ASCIITable = [], tape70 = [], passwordValid = "", passwordCode = []) {
-    let finalTape = {};
-    let cursor = null;
+//Basic second order encryption of periods opposed by key
+export function encodeCSG (baseAlphabetMatch, msg, password, spacer = '&') {
+    const baseAlphabet = Object.keys(baseAlphabetMatch)
+    let symbolsOrder = baseAlphabet.map(key => { return baseAlphabetMatch[key] })
+    let msgEncoded = Array()
 
-    for (let i = 0; i < passwordValid.length; i++){
-        const symbol = passwordCode[i];
-        const charASCII = passwordValid[i];
-
-        if (!Object.values(finalTape).includes(symbol)) {
-            finalTape[charASCII] = symbol;
-        }
-
-        if (cursor === null) {
-            cursor = [charASCII, symbol]
-        }
-
-        else {
-            let ASCIIindex = ASCIITable.indexOf(cursor[0])
-            let tape70index = tape70.indexOf(cursor[1])
-            const cursorEnd = tape70.indexOf(symbol)
-
-            let step = cursorEnd < tape70index ? -1 : 1;
-
-            for (let j = 0; Math.abs(j) < Math.abs(step); j += (cursorEnd - tape70index)) {
-                finalTape["" + ASCIITable[j + ASCIIindex] + ""] = tape70[j + tape70index];
-            }
-            cursor = [charASCII, symbol]
-        } 
+    for (let i = 0; i < password.length; i++) {
+        let posInA = baseAlphabet.indexOf(password[i]) //Position in base Alphabet
+        //Invert position of periods [posInA ... end] and [start ... posInA]
+        symbolsOrder = symbolsOrder.slice(posInA).reverse().concat(symbolsOrder.slice(0, posInA))
     }
+    let finalAlphabetMatch = {}; for (let i = 0; i < baseAlphabet.length; i++) finalAlphabetMatch[baseAlphabet[i]] = symbolsOrder[i]
+    console.log(finalAlphabetMatch)
 
-    const arrayOfSymbolsRemain = tape70.filter((v) => {
-        return !Object.values(finalTape).includes(v);
-    })
-
-    const symbolsRemain = makeIterator(arrayOfSymbolsRemain);
-
-    if (Object.keys(finalTape).length < ASCIITable.length) {
-        for (let i = 0; i < ASCIITable.length; i++) {
-            if (!Object.keys(finalTape).includes(ASCIITable[i])) {
-                finalTape["" + ASCIITable[i] + ""]= symbolsRemain.next().value;
-            }   
-        }
+    for (let i = 0; i < msg.length; i++) {
+        msgEncoded.push(finalAlphabetMatch[msg[i]] + spacer)
     }
+    return msgEncoded.join('')
+}
 
-    return finalTape;
-        
+export function decodeCSG (baseAlphabetMatch, msg, password, spacer){
+    const baseAlphabet = Object.keys(baseAlphabetMatch)
+    let symbolsOrder = baseAlphabet.map(key => { return baseAlphabetMatch[key] })
+    let msgDecoded = Array()
+
+    for (let i = 0; i < password.length; i++) {
+        let posInA = baseAlphabet.indexOf(password[i]) //Position in base Alphabet
+        //Invert position of periods [posInA ... end] and [start ... posInA]
+        symbolsOrder = symbolsOrder.slice(posInA).reverse().concat(symbolsOrder.slice(0, posInA))
+    }
+    let finalAlphabetMatch = {}; for (let i = 0; i < baseAlphabet.length; i++) finalAlphabetMatch[symbolsOrder[i]] = baseAlphabet[i]
+
+    msg = msg.split(spacer)
+    for (let i = 0; i < msg.length; i++) {
+        if (msg[i] != '')
+            msgDecoded.push(finalAlphabetMatch[msg[i]])
+    }
+    return msgDecoded.join('')
 }
