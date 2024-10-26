@@ -15,30 +15,12 @@ export function ConvertToValidASCIITable(ASCIITable = [], message = ""){
                 case "\n":
                     convertedMsg.push([" ", " ", " "]);
                     break;
-                case char.toUpperCase():
-                    convertedMsg.push("§");
-                    break;
             }
             let getLetter = char.toLowerCase().normalize("NFD");
 
             if(getLetter.length > 1){
                 let splitString = getLetter.split("");
-                getLetter = splitString.reverse();
-                switch (getLetter[0].charCodeAt(0)){
-                    case 768:
-                        getLetter[0] = "`";
-                        break;
-                    case 769:
-                        getLetter[0] = "´";
-                        break;
-                    case 770:
-                        getLetter[0] = "^";
-                        break;
-                    case 771:
-                        getLetter[0] = "~"
-                        break;
-                }
-                
+                getLetter = splitString[0];
             }
             convertedMsg.push(...getLetter);
         }

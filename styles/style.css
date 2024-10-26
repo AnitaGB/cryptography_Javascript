@@ -12,6 +12,10 @@ nav {
     margin: 20px 0;
 }
 
+input{
+    box-sizing:border-box
+} 
+
 nav li{
     display: inline;
     margin-right: 12px;
@@ -29,6 +33,11 @@ main article {
     margin: 20px 0;
 }
 
+.duas-colunas article{
+    padding: 15px;
+    border: 1px rgb(135, 130, 130) solid;
+}
+
 article h2 {
     margin-bottom: 12px;
 }
@@ -38,8 +47,8 @@ form div {
 }
 
 form input[type=text]{
-    display: block;
-    width: 300px;
+    display: inline-block;
+    width: 100%;
     padding: 5px;
     border-radius: 3px;
     border-width: 1px;
@@ -51,7 +60,7 @@ form input[type=text]:disabled{
 }
 
 button[type=submit] {
-    background-color: #248556;
+    background-color: #084C61;
     font-size: 16px;
     border: none;
     color: white;
@@ -63,9 +72,7 @@ button[type=submit] {
 }
 
 .resultado {
-    padding: 24px;
-    border: 1px rgb(135, 130, 130) solid;
-    border-radius: 5px;
+    padding: 24px 0;
     word-wrap: break-word;
     max-width: 500px;
 }

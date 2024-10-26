@@ -31,6 +31,16 @@
                 <h2>Algoritmo Encriptador</h2>
                 <form id="encriptador_form">
                     <div class="grupo">
+                        <!--Mensagem a ser criptografada-->
+                        <div>
+                            <label for="mensagem">Mensagem a ser criptografada</label>
+                            <input id="mensagem" type="text" placeholder="Bom dia!" required>
+                        </div>
+                        <!--Senha (Aceita apenas caracteres ASCII)-->
+                        <div>
+                            <label for="senha">Senha</label>
+                            <input id="senha" type="text" placeholder="senha123" required>
+                        </div>
                         <!--Adicionar opções do usuário escolher o alfabeto utilizado-->
                         <div>
                             <label for="alfabeto">Alfabeto</label>
@@ -41,17 +51,6 @@
                                 <option value="numbers">Numeros 1️⃣</option>
                             </select>
                         </div>
-                    </div>
-                    
-                    <!--Mensagem a ser criptografada-->
-                    <div>
-                        <label for="mensagem">Mensagem a ser criptografada</label>
-                        <input id="mensagem" type="text" placeholder="Bom dia!" required>
-                    </div>
-                    <!--Senha (Aceita apenas caracteres ASCII)-->
-                    <div>
-                        <label for="senha">Senha</label>
-                        <input id="senha" type="text" placeholder="senha123" required>
                     </div>
                     <button type="submit">Gerar mensagem criptografada</button>
                 </form>
@@ -67,16 +66,6 @@
                 <h2>Algoritmo Decriptador</h2>
                 <form id="decriptador_form">
                     <div class="grupo">
-                        <!--Adicionar opções do usuário escolher o alfabeto utilizado-->
-                        <div>
-                            <label for="alfabeto-d">Alfabeto</label>
-                            <select name="alfabeto-d" id="alfabeto-d">
-                                <option value="emojis">Emojis 😂</option>
-                                <option value="musical_notes">Notas Musicais 🎵</option>
-                                <option value="letters">Letras 🅰️</option>
-                                <option value="numbers">Numeros 1️⃣</option>
-                            </select>
-                        </div>
                         <!--Mensagem a ser decriptografada-->
                         <div>
                             <label for="mensagem-d">Mensagem a ser decriptada</label>
@@ -86,6 +75,16 @@
                         <div>
                             <label for="senha-d">Senha</label>
                             <input id="senha-d" type="text" placeholder="senha123" required>
+                        </div>
+                        <!--Adicionar opções do usuário escolher o alfabeto utilizado-->
+                        <div>
+                            <label for="alfabeto-d">Alfabeto</label>
+                            <select name="alfabeto-d" id="alfabeto-d">
+                                <option value="emojis">Emojis 😂</option>
+                                <option value="musical_notes">Notas Musicais 🎵</option>
+                                <option value="letters">Letras 🅰️</option>
+                                <option value="numbers">Numeros 1️⃣</option>
+                            </select>
                         </div>
                     </div>
                     <button type="submit">Gerar mensagem decriptada</button>
