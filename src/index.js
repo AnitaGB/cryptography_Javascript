@@ -1,4 +1,4 @@
-import { alphabetMatch, ConvertToValidASCIITable, encodeCSG, decodeCSG } from "./src/GenericEncripter.js";
+import { alphabetMatch, ConvertToValidASCIITable, encodeCSG, decodeCSG } from "./GenericEncripter.js";
 
 const ASCIITableDefault = [
     "0", "1", "2", "3", "4",
