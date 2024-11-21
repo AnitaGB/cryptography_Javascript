@@ -30,62 +30,27 @@
             <article id="encriptador">
                 <h2>Algoritmo Encriptador</h2>
                 <form id="encriptador_form">
-                    
                     <div class="grupo">
-                        <!--Adicionar opções do usuário fazer input do alfabeto ou usar o template fixo-->
+                        <!--Mensagem a ser criptografada-->
                         <div>
-                            <input id="tipo_entrada" type="checkbox" value="true" checked>
-                            <label for="tipo_entrada">Utilizar alfabeto padrão</label>
+                            <label for="mensagem">Mensagem a ser criptografada</label>
+                            <input id="mensagem" type="text" placeholder="Bom dia!" required>
                         </div>
-                        <!--Se escolhido fazer input, desbloquear campo de input de alfabeto-->
+                        <!--Senha (Aceita apenas caracteres ASCII)-->
+                        <div>
+                            <label for="senha">Senha</label>
+                            <input id="senha" type="text" placeholder="senha123" required>
+                        </div>
+                        <!--Adicionar opções do usuário escolher o alfabeto utilizado-->
                         <div>
                             <label for="alfabeto">Alfabeto</label>
-                            <input 
-                                id="alfabeto" 
-                                type="text" 
-                                placeholder="['a', 'b', 'c']"  
-                                value="['0', '1', '2', '3', '4', '5', '6']"
-                                disabled
-                                required
-                            >
+                            <select name="alfabeto" id="alfabeto">
+                                <option value="emojis">Emojis 😂</option>
+                                <option value="musical_notes">Notas Musicais 🎵</option>
+                                <option value="letters">Letras 🅰️</option>
+                                <option value="numbers">Numeros 1️⃣</option>
+                            </select>
                         </div>
-                    </div>
-                    
-                    <div class="grupo">
-                        <!--Adicionar opções do usuário fazer input do caractere separador ou usar o template fixo-->
-                        <div>
-                            <input id="tipo_separador" type="checkbox" value="true" checked>
-                            <label for="tipo_separador">Utilizar separador padrão</label>
-                        </div>
-                        <!--Se escolhido fazer input, desbloquear campo de input de caractere separador (Não pode estar contido no alfabeto)-->
-                        <div>
-                            <label for="separador">Separador</label>
-                            <input 
-                                id="separador" 
-                                type="text" 
-                                maxlength="1" 
-                                placeholder="&" 
-                                value="&" 
-                                disabled
-                                required
-                            >
-                        </div>
-                    </div>
-                    
-                    <!--Mensagem a ser criptografada-->
-                    <div>
-                        <label for="mensagem">Mensagem a ser criptografada</label>
-                        <input id="mensagem" type="text" placeholder="Bom dia!" required>
-                    </div>
-                    <!--Senha (Aceita apenas caracteres ASCII)-->
-                    <div>
-                        <label for="senha">Senha</label>
-                        <input id="senha" type="text" placeholder="senha123" required>
-                    </div>
-                    <!--Campo de input de correspondência das senhas (mesmo tamanho da senha acima)-->
-                    <div>
-                        <label for="correspSenha">Correspondência de senha</label>
-                        <input id="correspSenha" type="text" placeholder="['1', '1+1', '2+1']" required>
                     </div>
                     <button type="submit">Gerar mensagem criptografada</button>
                 </form>
@@ -99,15 +64,37 @@
             </article>
             <article id="decriptador">
                 <h2>Algoritmo Decriptador</h2>
-                <form>
-                    <!--Adicionar opções do usuário fazer input do alfabeto ou usar o template fixo-->
-                    <!--Se escolhido fazer input, desbloquear campo de input de alfabeto-->
-                    <!--Adicionar opções do usuário fazer input do caractere separador ou usar o template fixo-->
-                    <!--Se escolhido fazer input, desbloquear campo de input de caractere separador (Não pode estar contido no alfabeto)-->
-                    <!--Mensagem a ser descriptografada-->
-                    <!--Senha (Aceita apenas caracteres ASCII)-->
+                <form id="decriptador_form">
+                    <div class="grupo">
+                        <!--Mensagem a ser decriptografada-->
+                        <div>
+                            <label for="mensagem-d">Mensagem a ser decriptada</label>
+                            <input id="mensagem-d" type="text" placeholder="fedcbefdcbe" required>
+                        </div>
+                        <!--Senha (Aceita apenas caracteres ASCII)-->
+                        <div>
+                            <label for="senha-d">Senha</label>
+                            <input id="senha-d" type="text" placeholder="senha123" required>
+                        </div>
+                        <!--Adicionar opções do usuário escolher o alfabeto utilizado-->
+                        <div>
+                            <label for="alfabeto-d">Alfabeto</label>
+                            <select name="alfabeto-d" id="alfabeto-d">
+                                <option value="emojis">Emojis 😂</option>
+                                <option value="musical_notes">Notas Musicais 🎵</option>
+                                <option value="letters">Letras 🅰️</option>
+                                <option value="numbers">Numeros 1️⃣</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit">Gerar mensagem decriptada</button>
                 </form>
-                <p id="resultado-decriptador"></p>
+                <div id="resultado-decriptador-container" class="resultado">
+                    <h3>Resultado:</h3>
+                    <p id="resultado-decriptador">
+                        <!--Adicionar resultado da decriptacao-->
+                    </p>
+                </div>
             </article>
         </div>
         
