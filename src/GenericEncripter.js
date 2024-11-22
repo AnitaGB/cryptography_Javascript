@@ -42,7 +42,6 @@ export function alphabetMatch (baseAlphabet, symbolsList) {
         }
         prevChar = newChar
     })
-    console.log(alphabetMatch);
     return alphabetMatch
 }
 
@@ -58,7 +57,6 @@ export function encodeCSG (baseAlphabetMatch, msg, password, spacer = '&') {
         symbolsOrder = symbolsOrder.slice(posInA).reverse().concat(symbolsOrder.slice(0, posInA))
     }
     let finalAlphabetMatch = {}; for (let i = 0; i < baseAlphabet.length; i++) finalAlphabetMatch[baseAlphabet[i]] = symbolsOrder[i]
-    console.log(finalAlphabetMatch)
 
     for (let i = 0; i < msg.length; i++) {
         msgEncoded.push(finalAlphabetMatch[msg[i]] + spacer)

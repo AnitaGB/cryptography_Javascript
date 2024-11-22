@@ -36,6 +36,7 @@ main article {
 .duas-colunas article{
     padding: 15px;
     border: 1px rgb(135, 130, 130) solid;
+    border-radius: 12px;
 }
 
 article h2 {
@@ -46,7 +47,7 @@ form div {
     margin-bottom: 10px;
 }
 
-form input[type=text]{
+form input[type=text], select{
     display: inline-block;
     width: 100%;
     padding: 5px;
@@ -90,6 +91,10 @@ button[type=submit] {
 .duas-colunas article {
     flex: 40%;
     margin-right: 20px;
+}
+
+#exemplos p {
+    margin-bottom: 12px;
 }
 
 @media screen and (max-width: 700px) {

@@ -66,7 +66,6 @@ decrypterForm.addEventListener("submit", (e) => {
 });
 
 function encryptMsg(ASCIITable, alphabet, message, passwordValid, separator){
-    console.log(separator);
     const tape70 = alphabetMatch(ASCIITable, alphabet);
     const validMessage = ConvertToValidASCIITable(ASCIITable, message);
     const finalMessageStr = encodeCSG(tape70, validMessage, passwordValid, separator);
@@ -75,7 +74,6 @@ function encryptMsg(ASCIITable, alphabet, message, passwordValid, separator){
 }
 
 function decryptMsg(ASCIITable, alphabet, message, passwordValid, separator){
-    console.log(separator);
     const tape70 = alphabetMatch(ASCIITable, alphabet);
     const finalMessageStr = decodeCSG(tape70, message, passwordValid, separator);
 
